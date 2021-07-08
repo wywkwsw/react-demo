@@ -2,11 +2,29 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import NewApp from './NewApp'
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Route, Link } from "react-router-dom";
+import { AppProviders } from './context/index'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import rootReducer from './redux/reducers/index'
+const store = createStore(rootReducer)
+// ReactDOM.render(
+//   <React.StrictMode>
+//     <AppProviders>
+//       <App />
+//     </AppProviders>
+//   </React.StrictMode>,
+//   document.getElementById('root')
+// );
+console.log('store',store.getState());
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+    <NewApp />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
